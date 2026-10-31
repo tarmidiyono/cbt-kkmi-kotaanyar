@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CBT KKMI KOTAANYAR</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#059669">
+  <meta name="description" content="Portal ujian CBT bersama tingkat kecamatan.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23059669'/%3E%3Cpath d='M22 10 12 5 2 10l10 5 10-5z' transform='translate(3 3) scale(.75)' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Loading awal: hilang begitu sesi tersimpan/login siap (instan) -->
+  <div id="boot"><div class="spin"></div><div>Memuat aplikasi…</div><noscript>Aktifkan JavaScript untuk memakai aplikasi ini.</noscript></div>
+  <div id="net" class="hide" role="status">Koneksi terputus — jawaban tetap tersimpan di perangkat dan dikirim ulang otomatis.</div>
+
+  <!-- ============ LOGIN ============ -->
+  <div id="login" class="hide">
+    <div class="lc">
+      <div class="lb2">
+        <div class="llogo"><i data-ic="cap" data-cls="l"></i></div>
+        <h2 class="center" id="lgTitle" style="font-size:24px;line-height:30px">CBT KKMI KOTAANYAR</h2>
+        <p class="center muted" id="lgTag" style="margin:4px 0 20px">Portal Evaluasi &amp; Ujian Bersama Tingkat Kecamatan</p>
+        <div class="tabs" style="display:flex;margin-bottom:18px" role="tablist" id="lgTabs">
+          <button class="tb on" style="flex:1" data-role="siswa" role="tab" aria-selected="true">Siswa</button>
+          <button class="tb" style="flex:1" data-role="guru" role="tab" aria-selected="false">Guru</button>
+          <button class="tb" style="flex:1" data-role="admin" role="tab" aria-selected="false">Admin</button>
+        </div>
+        <form id="lgForm" autocomplete="on" novalidate>
+          <div class="fg">
+            <div class="row" style="margin-bottom:6px"><label class="fl" for="lgU" style="margin:0" id="lgUL">NISN</label><span class="sp"></span><span class="bdg g">AKTIF</span></div>
+            <div class="sw"><i data-ic="idcard"></i><input id="lgU" class="in" inputmode="text" autocomplete="username" placeholder="Masukkan NISN terdaftar" required></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="lgP">Kata Sandi</label>
+            <div class="sw"><i data-ic="lock"></i><input id="lgP" class="in" type="password" autocomplete="current-password" placeholder="Kata sandi" required style="padding-right:44px">
+              <button type="button" id="lgEye" aria-label="Tampilkan sandi" style="position:absolute;right:6px;top:2px;width:36px;height:36px;color:var(--t4)"><i data-ic="eye" style="position:static"></i></button></div>
+          </div>
+          <div class="row small muted" style="margin-bottom:14px">
+            <label style="display:flex;gap:8px;align-items:center;cursor:pointer;min-height:32px"><input type="checkbox" id="lgRem"> Ingat perangkat ini</label>
+            <span class="sp"></span><span><span class="dot"></span> Sesi Aman</span>
+          </div>
+          <button class="bt p lg" id="lgBtn" style="width:100%" type="submit"><span>Masuk ke Sistem</span><i data-ic="arrow-right"></i></button>
+          <div class="aler hide" id="lgErr" role="alert"><i data-ic="alert" data-cls="s"></i><span></span></div>
+        </form>
+      </div>
+      <div class="lf"><b><i data-ic="shield" data-cls="s"></i> Platform GAS &amp; Google Sheets v1.0</b><br>Dikelola oleh Tim Kurikulum &amp; Pengawas Tingkat Kecamatan</div>
+    </div>
+  </div>
+
+  <!-- ============ APLIKASI ============ -->
+  <div id="app" class="hide">
+    <aside id="side" aria-label="Navigasi utama">
+      <div class="brand"><span class="lg"><i data-ic="cap"></i></span><span><span id="brandN">CBT KKMI</span><small id="brandS">Tingkat Kecamatan</small></span></div>
+      <nav id="nav"></nav>
+      <div>
+        <button class="nv" id="btnSet"><i data-ic="key"></i><span>Ganti Sandi</span></button>
+        <button class="nv" id="btnOut" style="color:var(--red-x)"><i data-ic="logout"></i><span>Keluar</span></button>
+      </div>
+    </aside>
+    <div id="scrim"></div>
+
+    <header id="stop">
+      <div class="brand" style="padding:0"><span class="lg"><i data-ic="cap"></i></span><span><span id="brandN2">CBT KKMI</span><small>Tingkat Kecamatan</small></span></div>
+      <nav class="nl" id="snav"></nav>
+      <span style="flex:1"></span>
+      <div class="usr"><span class="av" id="sAv">S</span><span class="nm b" id="sNm">Siswa</span></div>
+      <button class="bt o sm" id="btnOut2"><i data-ic="logout" data-cls="s"></i>Keluar</button>
+    </header>
+
+    <main id="main">
+      <div id="top">
+        <button class="bt o ib" id="burger" aria-label="Buka menu"><i data-ic="menu"></i></button>
+        <h1 id="ttl">Dashboard</h1><span class="sp"></span>
+        <span class="bdg" id="syncB" title="Status sinkronisasi data"><span class="dot"></span><span>Tersinkron</span></span>
+        <div class="usr"><span class="av" id="uAv">A</span><span class="nm b" id="uNm">Admin</span></div>
+      </div>
+      <div id="vw"></div>
+      <footer id="sfoot">
+        <span>© 2026 Panitia Ujian CBT Kecamatan. Didukung Google Apps Script &amp; Google Sheets.</span>
+        <span><i data-ic="shield" data-cls="s"></i> Protokol Anti-Kecurangan Aktif · <i data-ic="cloud" data-cls="s"></i> Auto-Save Server</span>
+      </footer>
+    </main>
+
+    <!-- Ruang ujian (mode fokus) — dirender oleh JS -->
+    <div id="exam"></div>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+  <div id="mroot"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" async></script>
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/views-admin.js"></script>
+  <script src="js/views-siswa.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
